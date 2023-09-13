@@ -3,7 +3,7 @@ import { Telegraf, Markup } from 'telegraf';
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.command('start', ctx => {
-    console.log(ctx.from)
+    console.log(ctx.from);
     if (ctx.from.language_code == 'ru') {
         ctx.reply('Привет! Если ты видишь этот текст, значит бот работает.');
     } else {
