@@ -1,4 +1,5 @@
 import { Telegraf, Markup } from 'telegraf';
+import addEntry from "./db.js";
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -11,16 +12,18 @@ bot.command('start', ctx => {
     }
     ctx.reply(
         'Which pill?',
-        Markup.keyboard(['Blue', 'Red']
+        Markup.keyboard(['blue', 'red']
         ));
 })
 
-bot.hears('Blue', ctx => {
+bot.hears('blue', ctx => {
     ctx.reply(`You've chosen blue pill.`);
+    addEntry('blue', ctx.from.id, ctx.from.username)
 })
 
-bot.hears('Red', ctx => {
+bot.hears('red', ctx => {
     ctx.reply(`You've chosen red pill.`);
+    addEntry('red', ctx.from.id, ctx.from.username)
 })
 
 bot.launch();
